@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True False Quiz</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1b5d46;
+            color: #eeffe9;
+            text-align: center;
+        }
+        .container {
+            border-radius: 15px;            
+            width: 70%;
+            margin: 0 auto;
+            border: 1px solid #333;
+            background-color: honeydew;
+        }
+        .question {
+            font-weight: bold
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>OS Bonus True/False Kahoot</h1>
+        </header>
+
+        <section id="introduction">
+            <p>This quiz will test your knowledge on the operating system concepts covered in Chapters 7 and 9 of the course. Good luck!</p>
+        </section>
+
+        <main>
+            <div class="question" id="question"></div>
+            <button onclick="checkAnswer(true)">True</button>
+            <button onclick="checkAnswer(false)">False</button>
+            <div id="result"></div>
+        </main>
+
+        <footer>
+            <p>Link to the original Kahoot can be found here: 
+                <a href="https://create.kahoot.it/details/a40a0e27-1fe1-4ef2-86d7-368799a49cd2" target="_blank">Quiz Link</a></p>
+        </footer>
+    </div>
+    <script>
+        var questions = [
+            {   question: "Assume that it takes 100ns to access memory, if the page number is in TLB, the memory access time is 200ns.",
+                answer: false },
+            {   question: "For a 98-percent hit ratio, the effective memory access time is 100*0.99 + 200*0.01.",
+                answer: false },
+            {   question: "The valid bit is set when the associated page is in the process’s logical address space.",
+                answer: true },
+            {   question: "Pages may not be shared with a different process.",
+                answer: false },
+            {   question: "The maximum memory size for a system with a 16-bit logical address space is 2.",
+                answer: true },
+            {   question: "A page table may not be split into pages.",
+                answer: false },
+            {   question: "To execute a process, the entire logical memory space of the process must be loaded in memory.",
+                answer: false },
+            {   question: "A hard disk cannot be used to store pages.",
+                answer: false },
+            {   question: "To distinguish between the pages that are in memory and those that are on disk, the valid-invalid bit scheme is used.",
+                answer: true },
+            {   question: "An interrupt is generated when a page fault occurs.",
+                answer: true }  ];
+        // variables to keep track of quiz state        
+        var currentQuestion = 0;
+        var result = document.getElementById("result");
+        var question = document.getElementById("question");
+
+        // function to give question
+        function giveQuestion() {
+            question.textContent = questions[currentQuestion].question;
+        }
+        // function to check answer
+        function checkAnswer(userAnswer) {
+            var correctAnswer = questions[currentQuestion].answer;
+
+            if (userAnswer === correctAnswer) {
+                result.textContent = "Correct!";    } 
+            else {
+                result.textContent = "Incorrect.";  }
+        }
+        // keep track of current question
+        currentQuestion++;
+        if (currentQuestion === questions.length) {
+            currentQuestion = 0;
+        }
+
+        giveQuestion();
+
+    </script>
+</body>
+</html>
