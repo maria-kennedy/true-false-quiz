@@ -8,7 +8,7 @@
         body {
             font-family: 'Courier New', Courier, monospace;
             background-color: #1b5d46;
-            color: #eeffe9;
+            color: #000000;
             text-align: center;
         }
         .container {
@@ -69,6 +69,7 @@
             {   question: "An interrupt is generated when a page fault occurs.",
                 answer: true }  ];
         // variables to keep track of quiz state        
+
         var currentQuestion = 0;
         var result = document.getElementById("result");
         var question = document.getElementById("question");
@@ -80,20 +81,20 @@
         // function to check answer
         function checkAnswer(userAnswer) {
             var correctAnswer = questions[currentQuestion].answer;
-
             if (userAnswer === correctAnswer) {
-                result.textContent = "Correct!";    } 
-            else {
-                result.textContent = "Incorrect.";  }
+                result.textContent = "Correct!";    
+            } else {
+                result.textContent = "Incorrect.";  
+            }
+            // Move to the next question
+            currentQuestion++;
+            if (currentQuestion === questions.length) {
+                currentQuestion = 0;
+            }
+            giveQuestion();
         }
-        // keep track of current question
-        currentQuestion++;
-        if (currentQuestion === questions.length) {
-            currentQuestion = 0;
-        }
-
+        // display the first question 
         giveQuestion();
-
     </script>
 </body>
 </html>
